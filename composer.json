@@ -16,6 +16,9 @@
     "require": {
         "phpunit/phpunit": "5.6.1"
     },
+    "bin": [
+        "phpunit-parallel"
+    ],
     "autoload": {
         "psr-4": {
             "PHPUnit\\ParallelRunner\\": "src/ParallelUI/"
