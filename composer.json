@@ -22,6 +22,9 @@
     "autoload": {
         "psr-4": {
             "PHPUnit\\ParallelRunner\\": "src/ParallelUI/"
-        }
+        },
+        "classmap" : [
+            "src/Runner"
+        ]
     }
 }
