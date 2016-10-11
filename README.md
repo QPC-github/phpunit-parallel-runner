@@ -4,7 +4,9 @@ _processes_, this extensions allows for running PHPUnit in parallel on multiple 
  in various CI services such as CircleCI and TravisCI.
  
 ## Dependencies
-This project is an extension for **PHPUnit Version 5**.
+### PhpUnit
+- [Version 5](https://github.com/TaysirTayyab/phpunit-parallel-runner)
+- [Version 4](https://github.com/TaysirTayyab/phpunit-parallel-runner/tree/phpunit4)
 
 The development environment for this project is configured using docker, removing the need to actually install
 anything on your maching. Simply install the [Docker Engine](https://docs.docker.com/engine/installation/) and
