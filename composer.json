@@ -14,7 +14,16 @@
         "source": "https://github.com/TaysirTayyab/phpunit-parallel-runner"
     },
     "require": {
+        "php": ">=5.6",
         "phpunit/phpunit": "5.6.1"
+    },
+    "require-dev": {
+        "codeclimate/php-test-reporter": "dev-master"
+    },
+    "config": {
+        "platform": {
+            "php": "5.6"
+        }
     },
     "bin": [
         "phpunit-parallel"
