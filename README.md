@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/TaysirTayyab/phpunit-parallel-runner.svg?branch=master) ![Code Climate](https://codeclimate.com/github/TaysirTayyab/phpunit-parallel-runner/badges/gpa.svg) ![Test Coverage](https://codeclimate.com/github/TaysirTayyab/phpunit-parallel-runner/badges/coverage.svg)
+![Build Status](https://circleci.com/gh/Medology/phpunit-parallel-runner/tree/master.svg?style=shield&circle-token=273717e1bf67e269b52600fdf9f6d894a91b3afd) ![Code Climate](https://codeclimate.com/github/Medology/phpunit-parallel-runner/badges/gpa.svg) ![Test Coverage](https://codeclimate.com/github/Medology/phpunit-parallel-runner/badges/coverage.svg)
 
 # PHPUnit Parallel (Node) Runner
 A parallelizer for running PHPUnit on multiple nodes. While many plugins exist to run PHPUnit in parallel
@@ -7,8 +7,8 @@ _processes_, this extensions allows for running PHPUnit in parallel on multiple 
  
 ## Dependencies
 ### PhpUnit
-- [Version 5](https://github.com/TaysirTayyab/phpunit-parallel-runner)
-- [Version 4](https://github.com/TaysirTayyab/phpunit-parallel-runner/tree/phpunit4)
+- [Version 5](https://github.com/Medology/phpunit-parallel-runner)
+- [Version 4](https://github.com/Medology/phpunit-parallel-runner/tree/phpunit4)
 
 The development environment for this project is configured using docker, removing the need to actually install
 anything on your maching. Simply install the [Docker Engine](https://docs.docker.com/engine/installation/) and
