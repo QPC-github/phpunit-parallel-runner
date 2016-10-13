@@ -1,22 +1,20 @@
-sudo: required
+machine:
+  pre:
+    -
+  services:
+    - docker
 
-services:
-  - docker
+dependencies:
+  cache_directories:
+    - "vendor/"
 
-cache:
-  directories:
-    - vendor/
+  override:
+    - docker build circleci/docker/php -t parallel/php:5.6
+    - bin/composer install
 
-addons:
-  code_climate:
-    repo_token: $CODECLIMATE_REPO_TOKEN
+test:
+  override:
+    - ./circleci/bin/php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-install:
-  - docker build travisci/docker/php -t parallel/php:5.6
-  - bin/composer install
-
-script:
-  - ./travisci/bin/php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-
-after_script:
-  - ./travisci/bin/php vendor/bin/test-reporter
+  post:
+    - ./circleci/bin/php vendor/bin/test-reporter
