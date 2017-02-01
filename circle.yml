@@ -7,13 +7,12 @@ dependencies:
     - "vendor/"
 
   override:
+    - git config --global user.email "ci@medology.com" && git config --global user.name "Circle CI" && git rebase origin/master
     - docker build -t parallel/php:5.6 ./circleci/docker/php
     - ./bin/composer install
 
 test:
   override:
-    - ./circleci/bin/php vendor/bin/phpunit --coverage-clover build/logs/clover.xml --log-junit artifacts/junit.xml
-
+    - ./circleci/bin/php vendor/bin/phpunit --log-junit artifacts/junit.xml
   post:
-    - ./circleci/bin/php vendor/bin/test-reporter
     - cp artifacts/junit.xml ${CIRCLE_TEST_REPORTS}/phpunit.junit.xml
