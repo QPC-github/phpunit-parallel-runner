@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use PHPUnit\ParallelRunner\PHPUnit_Parallel_Command;
+use PHPUnit\ParallelRunner\Command;
 
 /*
  * This file is part of PHPUnit.
@@ -47,4 +47,4 @@ if (!defined('PHPUNIT_COMPOSER_INSTALL')) {
 
 require PHPUNIT_COMPOSER_INSTALL;
 
-PHPUnit_Parallel_Command::main();
+Command::main();

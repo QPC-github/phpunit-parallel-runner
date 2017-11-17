@@ -1,13 +1,13 @@
 <?php namespace PHPunit\ParallelRunner\Tests;
 
 use Exception;
-use PHPUnit\ParallelRunner\PHPUnit_Parallel_Command;
-use PHPUnit\ParallelRunner\PHPUnit_Parallel_TestRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\ParallelRunner\Command;
+use PHPUnit\ParallelRunner\TestRunner;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use RuntimeException;
 
-class CommandTest extends PHPUnit_Framework_TestCase {
+class CommandTest extends TestCase {
     /**
      * @param $class
      * @param $method
@@ -45,15 +45,15 @@ class CommandTest extends PHPUnit_Framework_TestCase {
      *
      */
     public function testCreateRunnerReturnsParallelRunner() {
-        $cmd = new PHPUnit_Parallel_Command();
+        $cmd = new Command();
         $f = $this->getHiddenMethod(get_class($cmd), 'createRunner');
 
-        $this->assertInstanceOf(PHPUnit_Parallel_TestRunner::class, $f->invokeArgs($cmd, []));
+        $this->assertInstanceOf(TestRunner::class, $f->invokeArgs($cmd, []));
     }
 
     public function testHelpShowsParallelParameters()
     {
-        $cmd = new PHPUnit_Parallel_Command();
+        $cmd = new Command();
         $f = $this->getHiddenMethod(get_class($cmd), 'showHelp');
 
         $help = $this->getStdOut(function() use ($cmd, $f) {
@@ -78,7 +78,7 @@ class CommandTest extends PHPUnit_Framework_TestCase {
      * @dataProvider singleParameterProvider
      */
     public function testCmdFailsWhenBothParamsAreNotProvided($args) {
-        $cmd = new PHPUnit_Parallel_Command();
+        $cmd = new Command();
         $f = $this->getHiddenMethod(get_class($cmd), 'handleArguments');
 
         try {

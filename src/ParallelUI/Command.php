@@ -1,15 +1,13 @@
-<?php namespace PHPUnit\ParallelRunner;
+<?php
 
-use InvalidArgumentException;
-use PHPUnit_Framework_Exception;
-use PHPUnit_TextUI_Command;
-use PHPUnit_Util_Getopt;
-use RuntimeException;
+namespace PHPUnit\ParallelRunner;
+
+use PHPUnit\Util\Getopt;
 
 /**
  * A Parallel Command runner for CLI
  */
-class PHPUnit_Parallel_Command extends PHPUnit_TextUI_Command
+class Command extends \PHPUnit\TextUI\Command
 {
     public function __construct() {
         $this->longOptions += [
@@ -23,7 +21,7 @@ class PHPUnit_Parallel_Command extends PHPUnit_TextUI_Command
      */
     protected function createRunner()
     {
-        return new PHPUnit_Parallel_TestRunner($this->arguments['loader']);
+        return new TestRunner($this->arguments['loader']);
     }
 
     /**
@@ -32,32 +30,32 @@ class PHPUnit_Parallel_Command extends PHPUnit_TextUI_Command
     protected function handleArguments(array $argv)
     {
         try {
-            $this->options = PHPUnit_Util_Getopt::getopt(
+            $this->options = Getopt::getopt(
                 $argv,
                 'd:c:hv',
                 array_keys($this->longOptions)
             );
-        } catch (PHPUnit_Framework_Exception $e) {
-            throw new InvalidArgumentException($e->getMessage());
+        } catch (\PHPUnit\Framework\Exception $e) {
+            throw new \InvalidArgumentException($e->getMessage());
         }
 
-        $this->arguments[PHPUnit_Parallel_TestRunner::PARALLEL_ARG] = [];
+        $this->arguments[TestRunner::PARALLEL_ARG] = [];
 
         foreach ($this->options[0] as $option) {
             switch ($option[0]) {
                 case '--current-node':
-                    $this->arguments[PHPUnit_Parallel_TestRunner::PARALLEL_ARG][0] = $option[1];
+                    $this->arguments[TestRunner::PARALLEL_ARG][0] = $option[1];
                     break;
                 case '--total-nodes':
-                    $this->arguments[PHPUnit_Parallel_TestRunner::PARALLEL_ARG][1] = $option[1];
+                    $this->arguments[TestRunner::PARALLEL_ARG][1] = $option[1];
                     break;
             }
         }
 
-        if (count($this->arguments[PHPUnit_Parallel_TestRunner::PARALLEL_ARG]) == 0) {
-            unset($this->arguments[PHPUnit_Parallel_TestRunner::PARALLEL_ARG]);
-        } else if (count($this->arguments[PHPUnit_Parallel_TestRunner::PARALLEL_ARG]) != 2) {
-            throw new RuntimeException('Both --current-node and --total-nodes are required for parallelism');
+        if (count($this->arguments[TestRunner::PARALLEL_ARG]) == 0) {
+            unset($this->arguments[TestRunner::PARALLEL_ARG]);
+        } else if (count($this->arguments[TestRunner::PARALLEL_ARG]) != 2) {
+            throw new \RuntimeException('Both --current-node and --total-nodes are required for parallelism');
         }
 
         parent::handleArguments($argv);
